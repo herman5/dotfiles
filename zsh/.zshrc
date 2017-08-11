@@ -33,7 +33,7 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # PYTHONPATH
-export PYTHONPATH="${PYTHONPATH}:/usr/local/lib:/usr/local/lib64"
+export PYTHONPATH="/usr/local/lib:/usr/local/lib64"
 
 #
 # Command History Size
@@ -51,7 +51,7 @@ export PROJ="cobalt.grid.apervita_celery"
 # Setting PATH for Python 2.7
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 PATH="${MONGO_HOME}/bin:${PATH}"
-export PATH
+export PATH="/usr/local/opt/python/libexec/bin:$PATH" # brew 1.2.5 upgrade
 
 alias runmongo="ulimit -n 1024 && ${MONGO_HOME}/bin/mongod --dbpath ${PROJECTS}/db/store &"
 alias runweb="python ${APERVITA_HOME}/web/manage.py runserver --nothreading"
@@ -61,6 +61,6 @@ alias stoprabbit="rabbitmqctl stop"
 alias rabbitmon="rabbitmqctl list_queues name messages consumers"
 alias runflower="celery -A $PROJ flower"
 
-# added by Miniconda3 4.1.11 installer
-#export PATH="/Users/dylan.herman/miniconda3/bin:$PATH"
-
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+eval "$(docker-machine env default)"
