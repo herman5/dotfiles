@@ -41,26 +41,15 @@ export PYTHONPATH="/usr/local/lib:/usr/local/lib64"
 #
 HISTFILESIZE=2500
 
-export PROJECTS="/Users/dylan.herman/Projects"
-export MONGO_HOME="${PROJECTS}/mongodb"
-export APERVITA_HOME="${PROJECTS}/apervita"
-export COBALT_ENV_NAME="localdev"
-export PYLIB="/usr/local/lib/python2.7/site-packages"
-export PROJ="cobalt.grid.apervita_celery"
-
 # Setting PATH for Python 2.7
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 PATH="${MONGO_HOME}/bin:${PATH}"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH" # brew 1.2.5 upgrade
 
-alias runmongo="ulimit -n 1024 && ${MONGO_HOME}/bin/mongod --dbpath ${PROJECTS}/db/store &"
-alias runweb="python ${APERVITA_HOME}/web/manage.py runserver --nothreading"
-alias runrabbit="rabbitmq-server"
-alias runrabbitd="rabbitmq-server -detached"
-alias stoprabbit="rabbitmqctl stop"
-alias rabbitmon="rabbitmqctl list_queues name messages consumers"
-alias runflower="celery -A $PROJ flower"
-
+# Pyenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# Docker
 eval "$(docker-machine env default)"
+
