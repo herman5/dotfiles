@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/dylan.herman/.oh-my-zsh
+export ZSH=/Users/dylanherman/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -11,7 +11,7 @@ ZSH_THEME="steeef"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx brew)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -43,13 +43,18 @@ HISTFILESIZE=2500
 
 # Setting PATH for Python 2.7
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
-PATH="${MONGO_HOME}/bin:${PATH}"
-export PATH="/usr/local/opt/python/libexec/bin:$PATH" # brew 1.2.5 upgrade
 
 # Pyenv
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
-# Docker
-eval "$(docker-machine env default)"
+# Rbenv
+eval "$(rbenv init -)"
+
+# https://github.com/aykamko/tag#installation
+if (( $+commands[tag] )); then
+  export TAG_SEARCH_PROG=rg
+  export TAG_CMD_FMT_STRING='code --goto {{.Filename}}:{{.LineNumber}}'
+  tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
+  alias rg=tag
+fi
 
