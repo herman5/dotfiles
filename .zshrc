@@ -4,7 +4,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH Theme
 ZSH_THEME="fino-time"
 
-# Minimal plugins: git for basics, z for directory jumping (add more if essential)
+# Minimal plugins
 plugins=(git fzf z)
 
 # Source Oh My Zsh
