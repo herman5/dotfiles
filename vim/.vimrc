@@ -35,3 +35,8 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" File formatting
+set endofline                 " Ensure file ends with newline
+set fixendofline              " Auto-fix missing newline on save
+autocmd BufWritePre * %s/\s\+$//e " Strip trailing whitespace
+
