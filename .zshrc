@@ -22,12 +22,6 @@ setopt HIST_REDUCE_BLANKS     # Remove blanks
 
 # PATH configuration
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
-# Rust
-. "$HOME/.cargo/env"
 # Pixi
 export PATH="/Users/dylanherman/.pixi/bin:$PATH"
-
-alias ls='ls -G --color=auto'
-alias ll='ls -lah'
-alias grep='grep --color=auto'
 
