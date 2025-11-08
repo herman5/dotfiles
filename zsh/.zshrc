@@ -1,60 +1,33 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/dylanherman/.oh-my-zsh
+# Path to Oh My Zsh installation
+export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="steeef"
+# ZSH Theme
+ZSH_THEME="fino-time"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+# Minimal plugins: git for basics, z for directory jumping (add more if essential)
+plugins=(git z)
 
+# Source Oh My Zsh
 source $ZSH/oh-my-zsh.sh
 
-## Orign bash_profile
-#
-# create a aliases file and source it here
-#
-. ~/.bash_aliases
+# Large history settings
+HISTSIZE=100000
+SAVEHIST=100000
+HISTFILE=~/.zsh_history
+setopt EXTENDED_HISTORY       # Save timestamps
+setopt SHARE_HISTORY          # Share history across sessions
+setopt HIST_IGNORE_ALL_DUPS   # Ignore duplicates
+setopt HIST_SAVE_NO_DUPS      # Don't save duplicates
+setopt HIST_REDUCE_BLANKS     # Remove blanks
 
-#
-# set user soft limit
-#
-/usr/bin/ulimit -n 10240
+# PATH configuration
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
+# Rust
+. "$HOME/.cargo/env"
+# Pixi
+export PATH="/Users/dylanherman/.pixi/bin:$PATH"
 
-#
-# Terminal Colors for Dark Background
-#
-export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
-
-# PYTHONPATH
-export PYTHONPATH="/usr/local/lib:/usr/local/lib64"
-
-#
-# Command History Size
-# set to 0 for unlimited history
-#
-HISTFILESIZE=2500
-
-# Setting PATH for Python 2.7
-PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
-
-# Pyenv
-eval "$(pyenv init -)"
-
-# Rbenv
-eval "$(rbenv init -)"
-
-# https://github.com/aykamko/tag#installation
-if (( $+commands[tag] )); then
-  export TAG_SEARCH_PROG=rg
-  export TAG_CMD_FMT_STRING='code --goto {{.Filename}}:{{.LineNumber}}'
-  tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
-  alias rg=tag
-fi
+alias ls='ls -G --color=auto'
+alias ll='ls -lah'
+alias grep='grep --color=auto'
 

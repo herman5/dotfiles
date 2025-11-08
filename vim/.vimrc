@@ -1,68 +1,37 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Basic settings for simplicity
+set nocompatible              " Be iMproved, required for modern Vim
+filetype plugin indent on     " Enable filetype plugins and indentation
+syntax enable                 " Enable syntax highlighting
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Display settings
+colorscheme habamax           " Color scheme
+set number                    " Show line numbers
+set cursorline                " Highlight current line
+set showmatch                 " Highlight matching brackets
+set ruler                     " Show cursor position
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" Search settings
+set hlsearch                  " Highlight search results
+set incsearch                 " Incremental search
+set ignorecase                " Ignore case in search
+set smartcase                 " Override ignorecase if search has uppercase
 
-" Custom bundles
-Plugin 'flazz/vim-colorschemes'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Lokaltog/vim-powerline'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
-Plugin 'rking/ag.vim'
-Plugin 'kana/vim-textobj-user'
-Plugin 'slim-template/vim-slim'
-Plugin 'bronson/vim-trailing-whitespace'
+" Indentation and tabs
+set expandtab                 " Use spaces instead of tabs
+set shiftwidth=4              " Number of spaces for indent
+set tabstop=4                 " Number of spaces per tab
+set softtabstop=4             " Number of spaces in tab when editing
+set autoindent                " Auto indent new lines
+set smartindent               " Smart autoindenting
 
-" All Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+" Other pragmatic settings
+set hidden                    " Allow switching buffers without saving
+set wildmenu                  " Enhanced command-line completion
+set backspace=indent,eol,start " Backspace over everything in insert mode
+set encoding=utf-8            " Set encoding to UTF-8
 
-let mapleader=","
-
-" Colors
-color mustang
-
-set expandtab
-set modelines=0
-set shiftwidth=2
-set clipboard=unnamed
-set synmaxcol=128
-set ttyscroll=10
-set encoding=utf-8
-set tabstop=2
-set nowrap
-set number
-set expandtab
+" No backups or swaps for simplicity
+set nobackup
 set nowritebackup
 set noswapfile
-set nobackup
-set hlsearch
-set ignorecase
-set smartcase
 
-" NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
-let NERDTreeHighlightCursorline=1
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
-autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
-" Close all open buffers on entering a window if the only
-" buffer that's left is the NERDTree buffer
-function s:CloseIfOnlyNerdTreeLeft()
-  if exists("t:NERDTreeBufName")
-    if bufwinnr(t:NERDTreeBufName) != -1
-      if winnr("$") == 1
-        q
-      endif
-    endif
-  endif
-endfunction
